@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/* TEMP: force dark colors to verify CSS is applied */
+html, body {
+  background: #0a0a0a !important; /* dark */
+  color: #ededed !important;      /* light text */
+  min-height: 100%;
+}
+
+/* Tailwind v4 token mapping */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji");
+  --font-mono: var(--font-geist-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+}
+
+html, body, #__next, :root {
+  height: 100%;
+}
+
+html {
+  color-scheme: dark; /* helps form controls, etc. */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Optional: make tables/inputs look better on dark by default */
+table { border-color: rgba(237,237,237,0.12); }
+input, button { color: inherit; }

@@ -4,10 +4,10 @@ import { cookies } from "next/headers";
 
 /**
  * Server-side Supabase client for route handlers / server actions.
- * Uses Next's cookies() adapter so auth works across redirects.
+ * Next 15: cookies() returns a Promise, so this helper is async.
  */
-export function getSupabaseServer() {
-  const cookieStore = cookies(); // synchronous in route handlers / server components
+export async function getSupabaseServer() {
+  const cookieStore = await cookies(); // <- Next 15 change
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

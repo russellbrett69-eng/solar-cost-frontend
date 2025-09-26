@@ -1,9 +1,8 @@
-// src/app/auth/signout/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseServer } from "@/lib/supabaseServer";
 
 async function handler(req: NextRequest) {
-  const supabase = await getSupabaseServer(); // <- await
+  const supabase = await getSupabaseServer(); // <- await here too
   await supabase.auth.signOut();
   return NextResponse.redirect(new URL("/login", req.url));
 }

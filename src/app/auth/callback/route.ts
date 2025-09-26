@@ -1,11 +1,9 @@
-// src/app/auth/callback/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseServer } from "@/lib/supabaseServer";
 
 export async function GET(req: NextRequest) {
-  const supabase = await getSupabaseServer(); // <- await
+  const supabase = await getSupabaseServer(); // <- await the helper
 
-  // Supabase returns ?code=... on the callback
   const code = req.nextUrl.searchParams.get("code");
   if (!code) {
     return NextResponse.redirect(new URL("/login?error=missing_code", req.url));

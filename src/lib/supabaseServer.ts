@@ -3,11 +3,10 @@ import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 /**
- * Server-side Supabase client for route handlers / server actions.
- * Next 15: cookies() returns a Promise, so this helper is async.
+ * Next 15: cookies() is async in route handlers, so this helper is async.
  */
 export async function getSupabaseServer() {
-  const cookieStore = await cookies(); // <- Next 15 change
+  const cookieStore = await cookies(); // <- await here
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

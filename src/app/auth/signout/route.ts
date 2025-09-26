@@ -1,9 +1,12 @@
-// src/app/auth/signout/route.ts
-import { NextResponse } from "next/server";
-import { getServerSupabase } from "@/lib/supabaseServer";
+import { NextRequest, NextResponse } from "next/server";
+import { getSupabaseServer } from "@/lib/supabaseServer";
 
-export async function POST() {
-  const supabase = getServerSupabase();
+async function handler(req: NextRequest) {
+  const supabase = getSupabaseServer();
   await supabase.auth.signOut();
-  return NextResponse.redirect(new URL("/login", process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"));
+  return NextResponse.redirect(new URL("/login", req.url));
 }
+
+// Allow GET or POST for convenience
+export const GET = handler;
+export const POST = handler;
